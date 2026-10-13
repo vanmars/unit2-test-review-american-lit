@@ -1,0 +1,662 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Unit 2 Test Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap">
+<style>
+/* Layout: a study desk. Slim header + tab strip, one centered column (max 720px), each deck a ruled index card with a red margin line. */
+:root {
+  --bg: #eaeef5;
+  --surface: #ffffff;
+  --surface-2: #f5f7fb;
+  --ink: #1c2840;
+  --muted: #56627b;
+  --rule: #cfdcf0;
+  --margin: #d24b4b;
+  --accent: #2a4ea3;
+  --accent-soft: #dfe7f8;
+  --good: #23784a;
+  --good-soft: #dcf1e4;
+  --bad: #b23a2f;
+  --bad-soft: #f8e1de;
+  --mark: #fff0a8;
+  --shadow: 0 1px 2px rgba(28,40,64,.08), 0 6px 20px rgba(28,40,64,.08);
+  --font-display: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f141d; --surface: #182132; --surface-2: #1d283b; --ink: #e5eaf4; --muted: #9aa6bd;
+    --rule: #26344c; --margin: #e06b6b; --accent: #91b0ff; --accent-soft: #23345a;
+    --good: #6fd39b; --good-soft: #193a2a; --bad: #ff8f84; --bad-soft: #43221f; --mark: #5a4b12;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f141d; --surface: #182132; --surface-2: #1d283b; --ink: #e5eaf4; --muted: #9aa6bd;
+  --rule: #26344c; --margin: #e06b6b; --accent: #91b0ff; --accent-soft: #23345a;
+  --good: #6fd39b; --good-soft: #193a2a; --bad: #ff8f84; --bad-soft: #43221f; --mark: #5a4b12;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; }
+header.top { display: flex; flex-direction: column; gap: 4px; padding-block: 8px 14px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 6vw, 42px); line-height: 1.1; margin: 0; text-wrap: balance; }
+nav.tabs { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 6px; background: var(--surface); border-radius: 12px; padding: 6px; box-shadow: var(--shadow); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
+nav.tabs a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; text-align: center; padding: 8px 6px; border-radius: 8px; color: var(--muted); text-decoration: none; font-weight: 700; font-size: 14px; line-height: 1.2; min-width: 0; }
+nav.tabs a small { font-weight: 400; font-size: 11.5px; }
+nav.tabs a[aria-current="page"] { background: var(--accent); color: var(--surface); }
+nav.tabs a:focus-visible, button:focus-visible, .card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+section.page { display: flex; flex-direction: column; gap: 16px; padding-block: 22px 0; }
+.intro h2 { font-family: var(--font-display); font-weight: 400; font-size: 28px; margin: 0 0 4px; }
+.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip, .seg button, .btn { font: inherit; font-size: 14px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; background: var(--surface); }
+.seg span { font-size: 13px; color: var(--muted); padding: 6px 4px 6px 12px; align-self: center; }
+.seg button { border: 0; border-radius: 0; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); font-weight: 700; }
+.btn { border-radius: 8px; font-weight: 700; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.btn:disabled { opacity: .45; cursor: default; }
+
+/* Index card */
+.stage { perspective: 1400px; }
+.card { position: relative; display: grid; width: 100%; min-height: 300px; cursor: pointer; transform-style: preserve-3d; transition: transform .45s cubic-bezier(.2,.7,.2,1); border-radius: 10px; }
+.card.flipped { transform: rotateY(180deg); }
+.face { grid-area: 1 / 1; position: relative; min-height: 300px; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 10px; background-color: var(--surface); box-shadow: var(--shadow); padding: 46px 22px 22px 48px; display: flex; flex-direction: column; gap: 10px; overflow: auto;
+  background-image: linear-gradient(to right, transparent 33px, var(--margin) 33px, var(--margin) 35px, transparent 35px), repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--rule) 31px, var(--rule) 32px);
+  background-position: 0 0, 0 14px; }
+.face.back { transform: rotateY(180deg); background-color: var(--surface-2); }
+.card .tag { position: absolute; top: 12px; left: 48px; right: 16px; display: flex; justify-content: space-between; gap: 8px; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.face .big { font-family: var(--font-display); font-size: clamp(30px, 6vw, 44px); line-height: 1.1; margin: auto 0; text-wrap: balance; }
+.face .def { font-size: clamp(18px, 3.2vw, 21px); line-height: 1.55; margin: auto 0; }
+.face .passage { font-size: 18px; line-height: 1.6; }
+.face .passage q, .face .passage .qt { font-style: italic; }
+.face .prompt { font-weight: 700; color: var(--accent); font-size: 16px; }
+.face .answer { font-family: var(--font-display); font-size: clamp(28px, 5.5vw, 38px); line-height: 1.1; }
+.face .why { font-size: 17px; }
+.face .label { font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-top: 4px; }
+.face .fix { font-size: 17px; line-height: 1.6; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; }
+.face .sentence { font-size: 19px; line-height: 1.65; }
+mark { background: var(--mark); color: inherit; padding: 0 2px; border-radius: 3px; }
+.verdict { display: inline-flex; align-self: flex-start; justify-self: start; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.verdict.err { background: var(--bad-soft); color: var(--bad); }
+.verdict.ok { background: var(--good-soft); color: var(--good); }
+.hint { font-size: 13px; color: var(--muted); text-align: center; }
+.nav-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.count { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 14px; }
+.bar { height: 4px; background: var(--rule); border-radius: 4px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .25s; }
+
+/* Reference panels */
+details.ref { background: var(--surface); border-radius: 10px; box-shadow: var(--shadow); padding: 12px 16px; }
+details.ref summary { cursor: pointer; font-weight: 700; }
+details.ref .refbody { display: grid; gap: 10px; padding-top: 10px; font-size: 15px; }
+details.ref .formula { font-family: var(--font-display); font-size: 20px; background: var(--surface-2); border-radius: 8px; padding: 8px 12px; }
+details.ref ol, details.ref ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.methods div { background: var(--surface-2); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.methods b { display: block; margin-bottom: 2px; }
+
+/* Claim clinic */
+.claimcard { background-color: var(--surface); border-radius: 10px; box-shadow: var(--shadow); padding: 18px 20px 20px 48px; display: flex; flex-direction: column; gap: 12px;
+  background-image: linear-gradient(to right, transparent 33px, var(--margin) 33px, var(--margin) 35px, transparent 35px); }
+.claimcard .claim { font-size: 19px; line-height: 1.6; background: var(--surface-2); border-radius: 8px; padding: 12px 14px; }
+.options { display: grid; gap: 8px; }
+.opt { font: inherit; text-align: left; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 10px 12px; cursor: pointer; display: flex; gap: 10px; align-items: flex-start; }
+.opt .k { font-weight: 700; color: var(--muted); min-width: 1.2em; }
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt.right { border-color: var(--good); background: var(--good-soft); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt:disabled { cursor: default; }
+.feedback { display: grid; gap: 8px; border-top: 1px dashed var(--rule); padding-top: 12px; }
+.feedback p { margin: 0; }
+.score { font-variant-numeric: tabular-nums; font-weight: 700; }
+footer { margin-top: 32px; font-size: 13px; color: var(--muted); text-align: center; }
+
+@media (max-width: 520px) {
+  nav.tabs a { font-size: 13px; padding: 7px 2px; }
+  nav.tabs a small { display: none; }
+  .face { padding: 44px 16px 18px 44px; }
+  .card .tag { left: 44px; }
+  .claimcard { padding-left: 44px; padding-right: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .bar i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">English 10 · American Literature · Unit 2</span>
+    <h1>Unit 2 Test Review</h1>
+  </header>
+
+  <nav class="tabs" aria-label="Review pages">
+    <a href="#terms" data-page="terms">Key Terms<small>flashcards</small></a>
+    <a href="#context" data-page="context">In Context<small>application</small></a>
+    <a href="#claims" data-page="claims">Claim Clinic<small>fix the claim</small></a>
+    <a href="#quotes" data-page="quotes">Quote Check<small>find the error</small></a>
+  </nav>
+
+  <!-- PAGE 1 -->
+  <section class="page" id="page-terms" hidden>
+    <div class="intro">
+      <h2>Key Terms</h2>
+      <p>Every term from the study guide. Choose which side you want to see first, then tap the card (or press the space bar) to flip it.</p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Show first">
+        <span>Show first</span>
+        <button type="button" id="first-term" aria-pressed="true">Term</button>
+        <button type="button" id="first-def" aria-pressed="false">Definition</button>
+      </div>
+      <div class="chips" id="terms-chips"></div>
+    </div>
+    <div id="terms-deck"></div>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="page" id="page-context" hidden>
+    <div class="intro">
+      <h2>Terms in Context</h2>
+      <p>Each card shows a passage or situation from our unit. Name the term it demonstrates, then flip to check your answer and the reasoning.</p>
+    </div>
+    <div class="controls"><div class="chips" id="context-chips"></div></div>
+    <div id="context-deck"></div>
+  </section>
+
+  <!-- PAGE 3 -->
+  <section class="page" id="page-claims" hidden>
+    <div class="intro">
+      <h2>Claim Clinic</h2>
+      <p>Each draft claim has one main problem (or none). Pick what is wrong, then study the supercharged revision.</p>
+    </div>
+    <details class="ref">
+      <summary>Analytical claim formula</summary>
+      <div class="refbody">
+        <div class="formula">[Author] uses [literary choice] to [strong verb] [theme].</div>
+        <div><b>The theme</b> is the SO WHAT: a universal statement about life, not a one-word topic and not plot summary.<br><b>The literary choice</b> is the HOW: the device, tone, or shift that develops the theme.</div>
+        <div><b>Supercharge it:</b>
+          <ol>
+            <li>Replace the device with a precise adjective + noun (figurative language → haunting metaphors).</li>
+            <li>Replace “show” with a stronger analytical verb (reveals, conveys, suggests, illustrates).</li>
+            <li>Invert the sentence order to try a different structure.</li>
+            <li>Add a “they say” statement: While some believe [title] is about [x], it actually conveys [theme].</li>
+          </ol>
+        </div>
+      </div>
+    </details>
+    <div class="nav-row"><span class="score" id="claim-score">0 correct · 0 answered</span><span class="count" id="claim-count"></span></div>
+    <div class="bar"><i id="claim-bar"></i></div>
+    <div id="claim-card"></div>
+    <div class="nav-row">
+      <button class="btn" type="button" id="claim-prev">← Previous</button>
+      <button class="btn primary" type="button" id="claim-next">Next claim →</button>
+    </div>
+  </section>
+
+  <!-- PAGE 4 -->
+  <section class="page" id="page-quotes" hidden>
+    <div class="intro">
+      <h2>Quote Check</h2>
+      <p>Each sentence tries one of our three integration methods. Find the lead-in or punctuation error before you flip. A few sentences are already correct, so read carefully.</p>
+    </div>
+    <details class="ref">
+      <summary>Our three integration methods</summary>
+      <div class="refbody">
+        <div class="methods">
+          <div><b>1 · Lead-in + comma</b>Context and speaker, then a comma, then the quote.</div>
+          <div><b>2 · Embed in action</b>The quote flows as part of your sentence: no comma, no capital letter.</div>
+          <div><b>3 · Colon</b>A complete sentence of your own, then a colon, then the quote.</div>
+        </div>
+        <ul>
+          <li>Embedding + “Quote” + (Citation). The period goes after the citation.</li>
+          <li>Give context before the quote; never drop a quote in alone or start with it.</li>
+          <li>Brackets [ ] mark added or changed words. Ellipses ( . . . ) mark omitted words.</li>
+          <li>Avoid “This quote shows that…”</li>
+        </ul>
+        <div class="hint" style="text-align:left">Citations here show only the author’s last name because page numbers vary by copy. On your essays, use (Lastname #).</div>
+      </div>
+    </details>
+    <div class="controls"><div class="chips" id="quotes-chips"></div></div>
+    <div id="quotes-deck"></div>
+  </section>
+
+  <footer>Tap a card or press the space bar to flip · arrow keys move between cards</footer>
+</div>
+
+<script>
+/* ---------- STORAGE (per-viewer convenience only) ---------- */
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+/* ---------- PAGE 1 DATA: key terms ---------- */
+const LIT = "Literary Elements + Devices", MOV = "Movements + Historical Contexts", RHE = "Rhetorical Terms";
+const TERMS = [
+  [LIT, "Theme", "The central idea, message, or insight about life that a work conveys."],
+  [LIT, "Diction", "A writer’s or speaker’s word choice; can be formal, informal, elevated, plain, and more."],
+  [LIT, "Tone", "The author’s or speaker’s attitude toward the subject matter."],
+  [LIT, "Simile", "A comparison of two unlike things using “like” or “as.”"],
+  [LIT, "Metaphor", "An implied or overt comparison between two unlike things, without using “like” or “as.”"],
+  [LIT, "Conceit / Extended Metaphor", "A metaphor developed at length across multiple lines or an entire poem."],
+  [LIT, "Personification", "When non-human objects or ideas are given human characteristics."],
+  [LIT, "Motif", "A recurring image, idea, or symbol that appears throughout a work."],
+  [LIT, "Imagery", "Language that appeals to the five senses (sight, sound, touch, taste, smell)."],
+  [LIT, "Symbol", "Something (an object, person, or image) that stands for something else beyond its literal meaning."],
+  [LIT, "Allusion", "A reference to something outside the text (historical, religious, literary, or cultural) meant to enrich meaning."],
+  [LIT, "Apostrophe", "Addressing an absent person, abstract idea, or inanimate object directly, as if it could respond."],
+  [LIT, "Hyperbole", "Deliberate exaggeration used for emphasis or effect, not meant to be taken literally."],
+  [LIT, "Anaphora", "Repetition of a word or phrase at the beginning of successive clauses or sentences, for emphasis and rhythm."],
+  [LIT, "Epistrophe", "Repetition of a word or phrase at the end of successive clauses or sentences, for emphasis and rhythm."],
+  [LIT, "Antithesis", "Placing sharply contrasting ideas side by side in a balanced, parallel grammatical structure."],
+  [LIT, "Parallelism", "Repeating a grammatical structure across a sentence or passage to build rhythm and emphasis."],
+  [LIT, "Rhetorical Question", "A question asked for persuasive effect, not to elicit an actual answer."],
+  [LIT, "Meter", "The rhythmic pattern of stressed and unstressed syllables in a line of poetry."],
+  [LIT, "Rhyme Scheme", "The pattern of end rhymes in a poem, often notated with letters (e.g., ABAB)."],
+  [LIT, "Alliteration", "The repetition of the same beginning consonant sound in nearby words."],
+  [LIT, "Refrain", "A line or phrase repeated at intervals, often at the end of a stanza."],
+  [LIT, "Free Verse", "Poetry without a fixed meter or rhyme scheme."],
+  [LIT, "Enjambment", "When a sentence or phrase continues past the end of a line without a pause, carrying over to the next line."],
+  [LIT, "Couplet", "Two consecutive lines of poetry that usually rhyme and share the same meter."],
+
+  [MOV, "Creation Myth", "A traditional story explaining how the world, humans, or a particular people came into being."],
+  [MOV, "Trickster Story", "A story centered on a trickster: a recurring figure in many Native American oral traditions (e.g., Coyote, Raven, Iktomi) who breaks rules and causes mischief, often teaching a lesson through disruption."],
+  [MOV, "Colonization", "The process by which European powers settled and claimed Indigenous lands, displacing and often violently suppressing Native peoples and cultures."],
+  [MOV, "Oral Tradition", "The practice of passing down stories, myths, histories, and values through spoken performance across generations, rather than through writing."],
+  [MOV, "Animism", "The belief that natural objects, phenomena, and the universe itself possess a spiritual essence; central to many Native American worldviews."],
+  [MOV, "Puritanism", "A strict form of English Protestantism that sought to “purify” the Church of England; Puritan settlers in New England emphasized predestination, original sin, and a covenant relationship with God."],
+  [MOV, "Predestination", "The Calvinist/Puritan belief that God has already determined who will be saved (“the elect”) before they are born."],
+  [MOV, "Divine Providence", "The belief that God actively directs and intervenes in human affairs and history."],
+  [MOV, "Typology", "A way of reading events, especially in early American writing, as symbolic fulfillments of patterns established in the Bible."],
+  [MOV, "Plain Style", "A simple, direct prose style favored by Puritan writers, valued for clarity over ornamentation: the belief that truth needed no embellishment."],
+  [MOV, "Jeremiad", "A sermon or piece of writing that laments a community’s moral decline and warns of God’s punishment unless the community repents and returns to its founding values."],
+  [MOV, "Theism", "Belief in a personal God who is actively involved in, and can intervene in, the world and in individual lives."],
+  [MOV, "Deism", "An Enlightenment-influenced belief in a rational God who created the universe and its natural laws but does not intervene supernaturally afterward: God as a “clockmaker.”"],
+  [MOV, "The Great Awakening", "A series of Protestant religious revivals in the American colonies (1730s–1740s) marked by emotional preaching and a renewed emphasis on personal salvation."],
+  [MOV, "The Enlightenment", "An intellectual movement (17th–18th century), also called the Age of Reason, emphasizing reason, empirical observation, natural rights, and skepticism of traditional authority."],
+  [MOV, "Natural Rights", "Rights believed to belong to all people simply by virtue of being human (e.g., life, liberty, property), not granted by government."],
+  [MOV, "Social Contract", "The theory that legitimate government arises from an agreement among the people to form a society and abide by shared rules for mutual benefit."],
+  [MOV, "Federalism", "A system of government in which power is divided between a central (national) government and individual states."],
+  [MOV, "Founding Fathers", "The group of political leaders who led the American Revolution and shaped the founding documents and government of the United States."],
+  [MOV, "Pamphleteering", "The practice of writing and distributing short, persuasive political publications (pamphlets) to shape public opinion, especially common during the Revolutionary era."],
+
+  [RHE, "Rhetoric", "The art of persuasive speaking or writing."],
+  [RHE, "Rhetorical Situation", "The context surrounding a speech or text: the speaker, purpose, audience, context, and exigence."],
+  [RHE, "SPACECAT", "A tool for analyzing a rhetorical situation: Speaker, Purpose, Audience, Context, Exigence, Choices, Appeals, Tone."],
+  [RHE, "Speaker", "The person delivering the message, including the identity, role, and background that shape how the audience receives it."],
+  [RHE, "Purpose", "What the speaker wants the audience to think, feel, or do as a result of the text."],
+  [RHE, "Audience", "The specific listeners or readers the speaker is trying to persuade."],
+  [RHE, "Context", "The time, place, and historical circumstances in which the text is delivered."],
+  [RHE, "Exigence", "The urgent problem or circumstance that motivates a speech or piece of writing."],
+  [RHE, "Choices", "The specific rhetorical and literary devices a speaker uses (such as diction, imagery, or repetition) to achieve the purpose."],
+  [RHE, "Appeals", "The persuasive strategies a speaker relies on: ethos, pathos, and logos."],
+  [RHE, "Ethos", "An appeal to the speaker’s credibility, character, or authority."],
+  [RHE, "Pathos", "An appeal to the audience’s emotions."],
+  [RHE, "Logos", "An appeal to logic, reason, and evidence."],
+  [RHE, "Claim", "The main arguable position the speaker or writer wants the audience to accept."],
+  [RHE, "Evidence", "The facts, examples, quotations, or experiences offered to support the claim."],
+  [RHE, "Reasoning", "The explanation that connects the evidence to the claim, showing why the evidence proves the point."],
+  [RHE, "Counterargument", "An opposing viewpoint that the speaker raises in order to answer or refute it."],
+  [RHE, "Concession", "Acknowledging an opposing viewpoint before refuting it, in order to build credibility with a skeptical audience."],
+  [RHE, "Call to Action", "A direct appeal urging the audience to take a specific action."]
+];
+
+/* ---------- PAGE 2 DATA: application cards [category, source, passage, prompt, answer, why] ---------- */
+const CONTEXT = [
+  [LIT, "Patrick Henry", `“I have but one lamp by which my feet are guided, and that is the lamp of experience.”`, "Which device turns experience into a lamp?", "Metaphor", "Henry calls experience a lamp without using “like” or “as.” The comparison suggests the past lights the way for judging the future."],
+  [LIT, "Jonathan Edwards", `“The wrath of God is like great waters that are dammed for the present; they increase more and more, and rise higher and higher.”`, "Which device compares God’s wrath to dammed-up water?", "Simile", "The word “like” signals a simile. Water building behind a dam makes the coming judgment feel unstoppable."],
+  [LIT, "Patrick Henry", `“We have petitioned; we have remonstrated; we have supplicated; we have prostrated ourselves before the throne.”`, "Look at how each clause begins. Which device is this?", "Anaphora", "“We have” opens each clause. The repetition piles up every peaceful effort the colonists have already tried."],
+  [LIT, "Patrick Henry", `Henry warns that colonists who cling to false hope “listen to the song of that siren till she transforms us into beasts.”`, "Which device connects Henry’s warning to Greek mythology?", "Allusion", "The sirens of Greek myth lured sailors to destruction with beautiful songs. Henry suggests that comforting hopes of peace are just as dangerous."],
+  [LIT, "Patrick Henry", `In the middle of his argument, Henry cries out, “Forbid it, Almighty God!”`, "Henry suddenly speaks to God instead of to the delegates. Which device is this?", "Apostrophe", "Henry turns away from his audience to address a being who is not physically present, adding solemn, prayer-like intensity."],
+  [LIT, "Anne Bradstreet, “Verses Upon the Burning of Our House”", `“I wakened was with thund’ring noise / And piteous shrieks of dreadful voice.”`, "Which element makes readers hear the night of the fire?", "Imagery", "“Thund’ring noise” and “piteous shrieks” appeal to the sense of sound, plunging readers into the terror of waking to fire."],
+  [LIT, "Anne Bradstreet, “Verses Upon the Burning of Our House”", `“My pleasant things in ashes lie, / And them behold no more shall I.”`, "Two back-to-back rhyming lines form a complete unit. What is this pair called?", "Couplet", "“Lie” and “I” rhyme, and the two lines share the same meter. The whole poem is built from couplets like this one."],
+  [LIT, "Anne Bradstreet, “Verses Upon the Burning of Our House”", `“When by the ruins oft I passed / My sorrowing eyes aside did cast, / And here and there the places spy / Where oft I sat and long did lie.”`, "The end words are passed, cast, spy, lie. What is the rhyme scheme?", "Rhyme Scheme: AABB", "Passed/cast rhyme (A A), then spy/lie rhyme (B B). Paired end rhymes give the poem a steady, hymn-like sound."],
+  [LIT, "Anne Bradstreet, “Verses Upon the Burning of Our House”", `Read the first line aloud: “in SI-lent NIGHT when REST i TOOK.” Notice the steady da-DUM, da-DUM beat.`, "Which element names this rhythmic pattern of stressed and unstressed syllables?", "Meter", "Each line alternates unstressed and stressed syllables in a regular pattern, which gives the poem its measured rhythm."],
+  [LIT, "Thomas Paine, Common Sense", `“Freedom hath been hunted round the globe.”`, "Which device treats freedom as a living creature?", "Personification", "Freedom becomes a hunted fugitive, a human (or animal) experience, so readers feel liberty is in real danger."],
+  [LIT, "Thomas Paine, Common Sense", `“The sun never shined on a cause of greater worth.”`, "Which device exaggerates to stress how important independence is?", "Hyperbole", "Paine claims no cause in all of history has mattered more. The overstatement is meant to inspire, not to be taken literally."],
+  [LIT, "Thomas Paine, Common Sense", `“Society in every state is a blessing, but government even in its best state is but a necessary evil.”`, "Which device sets two opposite ideas side by side in balanced form?", "Antithesis", "“Blessing” and “necessary evil” are sharply contrasted in matching clauses (“in every state” / “in its best state”)."],
+  [LIT, "Tecumseh, “Address to the Osage”", `“Brothers, we all belong to one family; we are all children of the Great Spirit.”`, "Which device repeats the same grammatical structure across clauses?", "Parallelism", "Both clauses follow the same pattern (we + all + belong/are + a family idea), building rhythm and a sense of unity."],
+  [LIT, "Tecumseh, “Address to the Osage”", `“Who are the white people that we should fear them?”`, "Tecumseh does not expect anyone to answer. Which device is this?", "Rhetorical Question", "The question is asked for effect. It implies the answer (“no one to fear”) and builds the Osage’s confidence."],
+  [LIT, "Tecumseh, “Address to the Osage”", `Tecumseh says his people “slake our thirst at the same spring.”`, "Listen to the repeated beginning sound in slake, same, spring. Which device is this?", "Alliteration", "The repeated “s” sound makes the image of a shared spring memorable and smooth, matching its message of unity."],
+  [LIT, "Practice example", `“Our fathers fought for this land. Our mothers prayed for this land. Our children will inherit this land.”`, "The same phrase ends each sentence. Which device is this?", "Epistrophe", "“This land” repeats at the end of each sentence. Epistrophe is the mirror image of anaphora, which repeats at the beginning."],
+  [LIT, "Benjamin Franklin, The Autobiography", `A man asks a smith to grind his whole ax bright. Tired of turning the grindstone, he settles for a partly polished ax and says, “I think I like a speckled ax best.”`, "The speckled ax stands for something larger. Which element is it?", "Symbol", "The half-polished ax represents the temptation to give up on self-improvement and settle for being imperfect."],
+  [LIT, "Benjamin Franklin, The Autobiography", `Franklin’s list of virtues includes: “HUMILITY. Imitate Jesus and Socrates.”`, "Which device does Franklin use by naming these two figures?", "Allusion", "Franklin refers to a religious figure and a Greek philosopher outside his text, using their reputations to define humility."],
+  [LIT, "Robert Lake, “An Indian Father’s Plea”", `Throughout his letter, Lake keeps returning to images of the natural world (animals, seasons, the land) as the setting of his son’s early education.`, "Which element names an image or idea that recurs throughout a work?", "Motif", "Repeated images of nature remind readers that Wind-Wolf’s first classroom was the world around him."],
+  [LIT, "Robert Lake, “An Indian Father’s Plea”", `“Learning takes many forms, and every culture’s way of teaching its children deserves respect.”`, "This sentence is a universal statement about life drawn from Lake’s letter. What is it?", "Theme", "It is a full statement about life, not a one-word topic like “education,” and it applies far beyond this one letter."],
+  [LIT, "Patrick Henry", `As he closes, Henry declares, “The war is actually begun!” and insists he would rather die than live without liberty.`, "His attitude is urgent and defiant. Which element names a speaker’s attitude toward the subject?", "Tone", "Tone is the speaker’s attitude. Henry’s exclamations and absolute choices convey urgency and defiance."],
+  [LIT, "Thomas Paine, Common Sense", `Paine promises “nothing more than simple facts, plain arguments, and common sense” and writes in everyday words that farmers and shopkeepers could follow.`, "Which element names this choice of plain, everyday words?", "Diction", "Diction is word choice. Paine’s plain diction made his argument accessible to ordinary colonists, not just educated elites."],
+  [LIT, "Practice example", `Across an entire poem, a speaker compares her life to a ship: childhood is the harbor, hardships are storms, and death is the final port.`, "Which device is a single comparison developed across a whole poem?", "Conceit / Extended Metaphor", "One metaphor (life as a voyage) stretches across the whole poem instead of appearing once."],
+  [LIT, "Practice example", `A modern poem has lines of very different lengths, no rhyming words, and no regular beat.`, "Which type of poetry is this?", "Free Verse", "Free verse has no fixed meter or rhyme scheme. The poet shapes rhythm through line breaks and word choice instead."],
+  [LIT, "Practice example", `“The fire climbed the stairs and took / the room where all my letters slept.”`, "The sentence keeps going past the end of the first line. Which device is this?", "Enjambment", "The thought runs from “took” onto the next line without a pause, pulling the reader forward the way the fire spreads."],
+  [LIT, "Practice example", `Every stanza of a ballad ends with the same line: “And the river keeps its own.”`, "Which element names a line repeated at intervals?", "Refrain", "A refrain returns at regular points, often the end of each stanza, to reinforce the poem’s central idea."],
+
+  [MOV, "Practice example", `A Diné (Navajo) story tells how the first people journeyed upward through a series of underworlds before emerging into the present world.`, "Which kind of story explains how a people came into being?", "Creation Myth", "The story explains the origin of the people and the world they live in."],
+  [MOV, "Practice example", `Raven tricks a powerful chief who keeps daylight locked in a box. When Raven escapes with it, light spreads across the world.`, "Which kind of story features this rule-breaking hero?", "Trickster Story", "Raven breaks rules through cunning and mischief, and the world changes because of the disruption."],
+  [MOV, "Practice example", `Before a hunt, a hunter thanks the spirit of the deer and leaves an offering, believing the animal’s spirit must be honored.`, "Which worldview does this practice reflect?", "Animism", "The hunter treats the deer as possessing a spirit, the core belief of animism."],
+  [MOV, "Practice example", `Each winter, a grandmother tells her grandchildren the history of their people, exactly as her own grandmother told it to her.`, "How is this history being preserved?", "Oral Tradition", "The history passes from generation to generation through spoken performance rather than writing."],
+  [MOV, "Practice example", `European settlers build forts on Native hunting grounds, then use treaties and force to push tribes onto smaller and smaller territories.`, "Which historical process is this?", "Colonization", "European powers claim Indigenous land and displace the people already living there."],
+  [MOV, "Practice example", `A group of English Protestants crosses the Atlantic to build a community whose church is free of the ceremonies they consider corrupt in the Church of England.`, "Which religious movement does this group belong to?", "Puritanism", "Puritans sought to “purify” the Church of England and built New England communities around that goal."],
+  [MOV, "Practice example", `A Puritan diarist anxiously searches her daily life for signs that she is one of God’s elect, knowing that nothing she does can change God’s decision.`, "Which belief causes her anxiety?", "Predestination", "Puritans believed God had already chosen the saved before birth, so believers looked for signs of election."],
+  [MOV, "Jonathan Edwards", `“There is nothing between you and hell but the air; it is only the power and mere pleasure of God that holds you up.”`, "Which belief about God’s role in human life does Edwards express?", "Divine Providence", "Edwards insists God actively controls every moment of each listener’s life, the heart of divine providence."],
+  [MOV, "Practice example", `A minister describes the colonists’ brutal first winter as their own forty years in the wilderness, just like the Israelites after Egypt.`, "Which way of reading events is the minister using?", "Typology", "He reads a present event as a repetition of a biblical pattern."],
+  [MOV, "Practice example", `A Puritan journal entry reads: “This day we buried two of our company. The ground was hard, and we gave thanks that the rest yet live.”`, "Which writing style does this entry show?", "Plain Style", "Short, direct sentences with no ornament reflect the Puritan belief that truth needs no decoration."],
+  [MOV, "Practice example", `A minister warns that the colony’s children have abandoned the faith of their grandparents, and that famine and fire will follow unless the town repents.`, "Which kind of sermon is this?", "Jeremiad", "A jeremiad laments moral decline and warns of God’s punishment unless the community returns to its founding values."],
+  [MOV, "Anne Bradstreet, “Verses Upon the Burning of Our House”", `As the fire spreads, Bradstreet writes, “And to my God my heart did cry / To strengthen me in my distress.”`, "She prays expecting God to help her personally. Which belief does this show?", "Theism", "Bradstreet believes in a personal God who listens and can act in her individual life."],
+  [MOV, "Practice example", `A thinker says the only scripture he needs is the orderly motion of the planets and the laws of physics. He prays for no miracles.`, "Which belief about God does he hold?", "Deism", "Deists saw God as a rational creator revealed through natural law who does not intervene with miracles."],
+  [MOV, "Practice example", `In the 1740s, the preacher George Whitefield draws outdoor crowds of thousands, urging each listener to experience a personal, emotional conversion.`, "Which movement is this?", "The Great Awakening", "Emotional revival preaching and a focus on personal salvation define the Great Awakening."],
+  [MOV, "Practice example", `Philosophers like John Locke argue that knowledge comes from observation and experience, and that government exists to protect people’s rights.`, "Which intellectual movement do these ideas belong to?", "The Enlightenment", "Reason, observation, and natural rights are hallmarks of the Enlightenment."],
+  [MOV, "Practice example", `A pamphlet insists that no king can take away a person’s life, liberty, or property, because these belong to every human from birth.`, "Which concept is the pamphlet describing?", "Natural Rights", "Natural rights belong to people simply because they are human; government does not grant them."],
+  [MOV, "Practice example", `In 1620, the Pilgrims sign the Mayflower Compact, agreeing to “combine ourselves together into a civil body politic” and to obey the laws they create together.`, "Which theory of government does this agreement reflect?", "Social Contract", "The settlers agree among themselves to form a government and follow shared rules for the common good."],
+  [MOV, "Practice example", `Under the Constitution, the national government runs the postal service, while each state sets up its own local courts and schools.`, "Which system of government divides power this way?", "Federalism", "Power is shared between a central government and individual states."],
+  [MOV, "Practice example", `George Washington, John Adams, Thomas Jefferson, James Madison, and Benjamin Franklin lead the Revolution and help shape the nation’s founding documents.`, "What is this group of leaders called?", "Founding Fathers", "These political leaders guided the Revolution and created the government of the United States."],
+  [MOV, "Practice example", `During the Revolution, printers produce cheap, short booklets arguing for or against independence, and colonists read them aloud in taverns.`, "What is this method of shaping public opinion called?", "Pamphleteering", "Short, persuasive political publications spread arguments quickly and cheaply to ordinary people."],
+
+  [RHE, "Patrick Henry", `“Has Great Britain any enemy, in this quarter of the world, to call for all this accumulation of navies and armies? No, sir, she has none.”`, "Henry reasons from the evidence of Britain’s military buildup. Which appeal is this?", "Logos", "Henry uses evidence and reasoning: if Britain has no other enemy here, its troops must be meant for the colonists."],
+  [RHE, "Patrick Henry", `After pointing to Britain’s growing navies and armies, Henry concludes, “They are meant for us: they can be meant for no other.”`, "This sentence explains why the evidence matters. Which part of an argument is it?", "Reasoning", "Reasoning connects evidence (the military buildup) to the claim (Britain intends to subdue the colonies)."],
+  [RHE, "Patrick Henry", `“Our chains are forged! Their clanking may be heard on the plains of Boston!”`, "Henry wants the delegates to feel alarm and outrage. Which appeal is this?", "Pathos", "The image of clanking chains stirs fear and anger, pushing listeners to act through emotion."],
+  [RHE, "Patrick Henry", `Henry says that if he kept his opinions to himself out of fear of offending anyone, he would consider himself “guilty of treason towards my country.”`, "Henry presents himself as a loyal, honest patriot. Which appeal is this?", "Ethos", "By showing his sense of duty and honesty, Henry builds his credibility and good character."],
+  [RHE, "Patrick Henry", `Henry opens: “No man thinks more highly than I do of the patriotism, as well as abilities, of the very worthy gentlemen who have just addressed the House.”`, "Before disagreeing, Henry respects the other side. Which part of an argument is this?", "Concession", "Henry acknowledges his opponents’ good qualities before refuting them, which earns trust from a skeptical audience."],
+  [RHE, "Patrick Henry", `Henry speaks in March 1775 at St. John’s Church in Richmond, Virginia, while British troops occupy Boston and tensions with Britain are rising.`, "Which SPACECAT element do these details describe?", "Context", "Context is the time, place, and historical circumstances surrounding the speech."],
+  [RHE, "Tecumseh, “Address to the Osage”", `Tecumseh travels to the Osage hoping to persuade them to join a united confederacy against American expansion.`, "Which SPACECAT element names what he wants his audience to do?", "Purpose", "Purpose is the speaker’s goal: here, convincing the Osage to unite with other nations."],
+  [RHE, "Robert Lake, “An Indian Father’s Plea”", `A father writes to his son’s kindergarten teacher after worrying that the school will judge his son a slow learner.`, "Which SPACECAT element names the urgent problem that prompts the letter?", "Exigence", "The fear that his son will be misjudged is the pressing circumstance that drives Lake to write."],
+  [RHE, "Robert Lake, “An Indian Father’s Plea”", `Lake addresses his letter to his son’s teacher, though his message reaches every educator who reads it.`, "Which SPACECAT element names the people Lake is trying to persuade?", "Audience", "The audience is the teacher (and, more broadly, all educators) whom Lake hopes to persuade."],
+  [RHE, "Robert Lake, “An Indian Father’s Plea”", `Lake argues that his son is not a slow learner but a child whose rich education happened in a different culture.`, "This is Lake’s main arguable position. Which part of an argument is it?", "Claim", "A claim is the central position the writer wants readers to accept."],
+  [RHE, "Robert Lake, “An Indian Father’s Plea”", `Lake describes specific things Wind-Wolf already knows and can do because of how he was raised.`, "Which part of an argument supports Lake’s position?", "Evidence", "Specific examples from his son’s life serve as evidence that the boy is already well educated."],
+  [RHE, "Thomas Paine, Common Sense", `“But Britain is the parent country, say some. Then the more shame upon her conduct.”`, "Paine raises what his opponents say, then answers it. Which part of an argument is this?", "Counterargument", "Paine introduces an opposing view (Britain as a loving parent) only to turn it against Britain."],
+  [RHE, "Thomas Paine, Common Sense", `“O ye that love mankind! Ye that dare oppose, not only the tyranny, but the tyrant, stand forth!”`, "Paine directly urges readers to act. Which part of an argument is this?", "Call to Action", "“Stand forth!” is a direct command urging readers to take a stand against tyranny."]
+];
+
+/* ---------- PAGE 3 DATA: claim clinic ---------- */
+const OPT = {
+  topic: "The theme is only a one-word topic, not a full statement about life.",
+  plot: "It summarizes what happens instead of making an argument.",
+  vague: "The literary choice is vague; it needs a precise adjective + noun.",
+  show: "It relies on the weak verb “show.”",
+  nodevice: "It never names a literary device or choice.",
+  first: "It uses first person or opinion language.",
+  wrongdev: "It misidentifies the literary device.",
+  specific: "The “theme” is only the speaker’s specific goal, not a universal idea.",
+  fact: "It states a fact no one could argue with.",
+  notheme: "It names a device but never states a theme (the SO WHAT).",
+  weakwords: "It uses vague, weak words (very, good, a lot).",
+  none: "Nothing. This claim is strong."
+};
+const CLAIMS = [
+  { claim: "Patrick Henry uses metaphors to show freedom.", opts: ["topic", "first", "plot", "fact"], ans: "topic",
+    why: "“Freedom” is a topic, not a theme. A theme makes a full statement about life that readers could debate. The verb “show” is also weak.",
+    fix: "Through his guiding metaphor of experience as a lamp, Patrick Henry asserts that the lessons of the past should outweigh comforting hopes about the future." },
+  { claim: "In “Give Me Liberty or Give Me Death,” Patrick Henry gives a speech to the Virginia Convention and tells them to fight the British.", opts: ["wrongdev", "plot", "first", "none"], ans: "plot",
+    why: "This retells what happens. An analytical claim argues HOW a literary choice develops a theme.",
+    fix: "Patrick Henry employs urgent rhetorical questions to convince his audience that a people who value freedom must be willing to risk everything to defend it." },
+  { claim: "Tecumseh uses literary devices to show that people should work together.", opts: ["fact", "plot", "vague", "first"], ans: "vague",
+    why: "“Literary devices” could mean anything. Name the precise choice with a descriptive adjective and noun.",
+    fix: "Tecumseh’s repeated, familial address of “Brothers” builds a sense of kinship, revealing that shared struggle can unite people who might otherwise remain divided." },
+  { claim: "Thomas Paine uses antithesis to show that government is bad.", opts: ["nodevice", "show", "plot", "wrongdev"], ans: "show",
+    why: "“Show” is the weakest analytical verb, and “bad” is vague. Choose a precise verb such as suggests, casts, or conveys.",
+    fix: "Thomas Paine’s stark antithesis between a blessed society and an evil government suggests that people should accept authority only when it protects their freedom." },
+  { claim: "In “An Indian Father’s Plea,” Robert Lake argues that schools should respect Native students.", opts: ["first", "wrongdev", "nodevice", "topic"], ans: "nodevice",
+    why: "The claim states a message but never names the literary choice that develops it (the HOW).",
+    fix: "Through tender, detailed imagery of his son’s life before school, Robert Lake reveals that intelligence takes many forms that a single classroom standard can overlook." },
+  { claim: "I think Benjamin Franklin uses a list to show that he wants to be a better person.", opts: ["first", "fact", "plot", "none"], ans: "first",
+    why: "Formal analysis avoids “I think,” “I believe,” and other first-person language. State the claim with confidence.",
+    fix: "Benjamin Franklin’s orderly catalog of thirteen virtues illustrates that self-improvement demands discipline, patience, and an honest record of one’s failures." },
+  { claim: "Patrick Henry uses a simile when he calls experience “the lamp” that guides his feet, which reveals that the past predicts the future.", opts: ["topic", "wrongdev", "show", "first"], ans: "wrongdev",
+    why: "Henry never uses “like” or “as.” Calling experience a lamp is a metaphor, not a simile.",
+    fix: "Patrick Henry’s guiding metaphor of experience as a lamp reveals that wise decisions grow from honest reflection on the past rather than from wishful thinking." },
+  { claim: "Tecumseh uses mocking rhetorical questions to persuade the Osage to fight the Americans.", opts: ["specific", "first", "wrongdev", "vague"], ans: "specific",
+    why: "Persuading the Osage is Tecumseh’s purpose in this one speech. A theme should be a universal idea that applies beyond the text.",
+    fix: "Tecumseh’s mocking rhetorical questions shrink the enemy’s power in his listeners’ minds, suggesting that courage grows when people refuse to be ruled by fear." },
+  { claim: "Benjamin Franklin lists thirteen virtues in his Autobiography.", opts: ["first", "fact", "wrongdev", "vague"], ans: "fact",
+    why: "No one could disagree with this sentence. A claim must be arguable and connect a choice to a theme.",
+    fix: "Through the humble image of a “speckled ax,” Benjamin Franklin suggests that striving toward perfection matters more than ever achieving it." },
+  { claim: "While some readers believe “An Indian Father’s Plea” is simply about one boy’s first year of school, Robert Lake uses imagery.", opts: ["notheme", "first", "plot", "none"], ans: "notheme",
+    why: "The “they say” opening is a strong start, but the claim stops before stating the SO WHAT. What does the imagery reveal?",
+    fix: "While some readers believe “An Indian Father’s Plea” is simply about one boy’s first year of school, Robert Lake’s affectionate imagery of the natural world reveals that every culture offers its children a rich education of its own." },
+  { claim: "Patrick Henry’s speech is very powerful and good because he uses a lot of pathos to show how he feels.", opts: ["weakwords", "wrongdev", "fact", "none"], ans: "weakwords",
+    why: "“Very,” “good,” and “a lot” are vague. They tell the reader nothing specific about Henry’s choices or his message.",
+    fix: "Patrick Henry’s thunderous appeals to pathos, from clanking chains to a final cry for liberty, convey that freedom is worth any sacrifice." },
+  { claim: "Through vivid personification of freedom as a hunted fugitive, Thomas Paine portrays America as the last refuge for liberty in a world ruled by tyranny.", opts: ["show", "none", "nodevice", "plot"], ans: "none",
+    why: "This claim names a precise choice (vivid personification), uses a strong verb (portrays), and states an arguable idea.",
+    fix: "No revision needed. Notice the precise adjective + noun, the strong verb, and the clear SO WHAT." },
+  { claim: "Thomas Paine uses figurative language to show independence.", opts: ["plot", "first", "none", "vague"], ans: "vague",
+    why: "“Figurative language” is too general (and “independence” is only a topic). Which figure of speech? What does it reveal?",
+    fix: "Thomas Paine’s soaring hyperbole elevates the colonists’ struggle into a cause of world-changing importance, suggesting that ordinary people can shape history." },
+  { claim: "Through repeated, desperate anaphora, Patrick Henry reveals that peaceful compromise eventually fails when one side refuses to listen.", opts: ["none", "show", "topic", "fact"], ans: "none",
+    why: "Precise device (repeated, desperate anaphora), strong verb (reveals), and a universal theme. This claim is ready to defend.",
+    fix: "No revision needed. Try inverting it: “Peaceful compromise eventually fails when one side refuses to listen, as Patrick Henry’s desperate anaphora reveals.”" }
+];
+
+/* ---------- PAGE 4 DATA: quote check [method, flawed, ok?, error, fixedHTML] ---------- */
+const M1 = "Lead-in + comma", M2 = "Embed in action", M3 = "Colon";
+const QUOTES = [
+  [M1, `When urging the delegates to trust history over hope, Patrick Henry declares “I have but one lamp by which my feet are guided, and that is the lamp of experience” (Henry).`, false,
+    "Missing comma. A lead-in that ends with a verb like “declares” needs a comma before the quote.",
+    `When urging the delegates to trust history over hope, Patrick Henry declares<mark>,</mark> “I have but one lamp by which my feet are guided, and that is the lamp of experience” (Henry).`],
+  [M1, `“Our chains are forged! Their clanking may be heard on the plains of Boston!” (Henry). This quote shows that Henry is scared.`, false,
+    "Dropped quote. There is no lead-in with context or speaker, and “This quote shows” should be cut.",
+    `<mark>Warning the convention that conflict has already begun in Massachusetts, Patrick Henry cries,</mark> “Our chains are forged! Their clanking may be heard on the plains of Boston!” (Henry).`],
+  [M1, `Opening his argument against British rule, Thomas Paine asserts, “Society in every state is a blessing, but government even in its best state is but a necessary evil.” (Paine).`, false,
+    "Extra period. The sentence’s period belongs after the citation, not inside the quotation marks.",
+    `Opening his argument against British rule, Thomas Paine asserts, “Society in every state is a blessing, but government even in its best state is but a necessary evil<mark>”</mark> (Paine)<mark>.</mark>`],
+  [M1, `“I was surpris’d to find myself so much fuller of faults than I had imagined,” Benjamin Franklin admits after tracking his virtues (Franklin).`, false,
+    "The sentence starts with the quote. Give context and the speaker first, then the quote.",
+    `<mark>After tracking his progress on a chart of virtues, Benjamin Franklin admits,</mark> “I was surpris’d to find myself so much fuller of faults than I had imagined” (Franklin).`],
+  [M1, `Describing the unity he hopes to build among Native nations, Tecumseh reminds the Osage, “We are all children of the Great Spirit” (Tecumseh).`, true,
+    "Correct. The lead-in gives context and the speaker, a comma comes before the quote, and the period follows the citation.",
+    `Describing the unity he hopes to build among Native nations, Tecumseh reminds the Osage, “We are all children of the Great Spirit” (Tecumseh).`],
+  [M1, `Recounting the colonists’ failed attempts at peace, Patrick Henry declares, “We have petitioned; we have prostrated ourselves before the throne” (Henry).`, false,
+    "Words are missing from the middle of the quote with no ellipses. Henry’s original includes “we have remonstrated; we have supplicated” between those clauses.",
+    `Recounting the colonists’ failed attempts at peace, Patrick Henry declares, “We have petitioned; <mark>. . .</mark> we have prostrated ourselves before the throne” (Henry).`],
+
+  [M2, `Patrick Henry insists that, “the battle . . . is not to the strong alone; it is to the vigilant, the active, the brave” (Henry).`, false,
+    "Extra comma. An embedded quote flows as part of the sentence, so no comma comes before it.",
+    `Patrick Henry insists that <mark>“the</mark> battle . . . is not to the strong alone; it is to the vigilant, the active, the brave” (Henry).`],
+  [M2, `Jonathan Edwards warns that God’s wrath grows “Like great waters that are dammed for the present” (Edwards).`, false,
+    "Capital letter. An embedded quote continues your sentence, so its first word stays lowercase.",
+    `Jonathan Edwards warns that God’s wrath grows “<mark>like</mark> great waters that are dammed for the present” (Edwards).`],
+  [M2, `Patrick Henry warns that colonists who cling to false hope will “listen to the song of that siren till she transforms them into beasts” (Henry).`, false,
+    "Missing brackets. Henry’s original says “us.” Any word you change inside a quote must go in brackets.",
+    `Patrick Henry warns that colonists who cling to false hope will “listen to the song of that siren till she transforms <mark>[them]</mark> into beasts” (Henry).`],
+  [M2, `Anne Bradstreet wakes to “I wakened was with thund’ring noise” (Bradstreet).`, false,
+    "The quote does not fit the grammar of the sentence. Embed only the words that flow naturally, and add context about the speaker.",
+    `<mark>Startled from sleep, Anne Bradstreet describes waking to</mark> “thund’ring noise / And piteous shrieks of dreadful voice” (Bradstreet).`],
+  [M2, `Tecumseh urges the Osage to see themselves as one people who “walk in the same path” and “slake [their] thirst at the same spring” (Tecumseh).`, true,
+    "Correct. Both quotes flow into the sentence with no commas, and brackets mark the changed pronoun (“our” became “[their]”).",
+    `Tecumseh urges the Osage to see themselves as one people who “walk in the same path” and “slake [their] thirst at the same spring” (Tecumseh).`],
+
+  [M3, `Tecumseh asks: “Who are the white people that we should fear them?” (Tecumseh).`, false,
+    "“Tecumseh asks” is not a complete thought that stands on its own. A colon must follow a full sentence that sets up the quote.",
+    `<mark>Tecumseh mocks the settlers’ supposed strength with a defiant question:</mark> “Who are the white people that we should fear them?” (Tecumseh).`],
+  [M3, `Thomas Paine personifies liberty as a desperate fugitive, “Freedom hath been hunted round the globe” (Paine).`, false,
+    "Wrong punctuation. A full sentence before the quote needs a colon, not a comma.",
+    `Thomas Paine personifies liberty as a desperate fugitive<mark>:</mark> “Freedom hath been hunted round the globe” (Paine).`],
+  [M3, `Jonathan Edwards reminds his listeners how fragile their lives are: “You hang by a slender thread, with the flames of divine wrath flashing about it.” (Edwards)`, false,
+    "Citation placement. Drop the period inside the quote and put the sentence’s period after the citation.",
+    `Jonathan Edwards reminds his listeners how fragile their lives are: “You hang by a slender thread, with the flames of divine wrath flashing about it<mark>”</mark> (Edwards)<mark>.</mark>`],
+  [M3, `Here is an example of Paine’s call to action: “O ye that love mankind! Ye that dare oppose, not only the tyranny, but the tyrant, stand forth!” (Paine).`, false,
+    "Weak lead-in. “Here is an example” gives no context. The sentence before the colon should set the scene and name the speaker’s move.",
+    `<mark>Near the close of his argument, Thomas Paine rallies every reader who values liberty:</mark> “O ye that love mankind! Ye that dare oppose, not only the tyranny, but the tyrant, stand forth!” (Paine).`],
+  [M3, `Benjamin Franklin captures the temptation to settle for imperfection through the words of a man tired of polishing his ax: “I think I like a speckled ax best” (Franklin).`, true,
+    "Correct. A complete sentence with context and speaker detail comes before the colon, and the period follows the citation.",
+    `Benjamin Franklin captures the temptation to settle for imperfection through the words of a man tired of polishing his ax: “I think I like a speckled ax best” (Franklin).`]
+];
+
+/* ---------- HELPERS ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function shuffleArr(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+let activeDeck = null;
+
+/* Generic flashcard deck */
+function makeDeck({ mount, chipsMount, items, categories, getCat, front, back, name }) {
+  const state = { cat: "All", order: items.slice(), i: 0, flipped: false };
+  mount.innerHTML = `
+    <div class="stage"><div class="card" tabindex="0" role="button" aria-label="Flashcard. Activate to flip.">
+      <div class="face front"></div><div class="face back"></div>
+    </div></div>
+    <div class="nav-row" style="margin-top:12px">
+      <button class="btn" type="button" data-act="prev">← Previous</button>
+      <span class="count"></span>
+      <button class="btn primary" type="button" data-act="next">Next →</button>
+    </div>
+    <div class="bar" style="margin-top:8px"><i></i></div>
+    <div class="nav-row" style="margin-top:10px; justify-content:center; gap:8px">
+      <button class="btn" type="button" data-act="flip">Flip card</button>
+      <button class="btn" type="button" data-act="shuffle">Shuffle</button>
+      <button class="btn" type="button" data-act="reset">In order</button>
+    </div>`;
+  const card = $(".card", mount), f = $(".front", mount), b = $(".back", mount);
+  const count = $(".count", mount), bar = $(".bar i", mount);
+  if (chipsMount) {
+    chipsMount.innerHTML = ["All", ...categories].map(c => `<button type="button" class="chip" aria-pressed="${c === "All"}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+    chipsMount.addEventListener("click", e => {
+      const btn = e.target.closest("[data-cat]"); if (!btn) return;
+      state.cat = btn.dataset.cat;
+      chipsMount.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === btn));
+      state.order = items.filter(it => state.cat === "All" || getCat(it) === state.cat);
+      state.i = 0; render();
+    });
+  }
+  function render() {
+    const it = state.order[state.i];
+    state.flipped = false; card.classList.remove("flipped");
+    f.innerHTML = front(it); b.innerHTML = back(it);
+    f.setAttribute("aria-hidden", "false"); b.setAttribute("aria-hidden", "true");
+    count.textContent = `${state.i + 1} / ${state.order.length}`;
+    bar.style.width = `${((state.i + 1) / state.order.length) * 100}%`;
+    $('[data-act="prev"]', mount).disabled = state.i === 0;
+    $('[data-act="next"]', mount).disabled = state.i === state.order.length - 1;
+  }
+  function flip() { state.flipped = !state.flipped; card.classList.toggle("flipped", state.flipped); f.setAttribute("aria-hidden", state.flipped); b.setAttribute("aria-hidden", !state.flipped); }
+  function go(d) { const n = state.i + d; if (n >= 0 && n < state.order.length) { state.i = n; render(); } }
+  card.addEventListener("click", flip);
+  card.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); flip(); } });
+  mount.addEventListener("click", e => {
+    const a = e.target.closest("[data-act]"); if (!a) return;
+    if (a.dataset.act === "prev") go(-1);
+    if (a.dataset.act === "next") go(1);
+    if (a.dataset.act === "flip") flip();
+    if (a.dataset.act === "shuffle") { state.order = shuffleArr(state.order); state.i = 0; render(); }
+    if (a.dataset.act === "reset") { state.order = items.filter(it => state.cat === "All" || getCat(it) === state.cat); state.i = 0; render(); }
+  });
+  render();
+  return { flip, go, render, name };
+}
+
+/* ---------- PAGE 1 ---------- */
+let termFirst = store.get("u2.termFirst", "term");
+const termsDeck = makeDeck({
+  name: "terms", mount: $("#terms-deck"), chipsMount: $("#terms-chips"), items: TERMS,
+  categories: [LIT, MOV, RHE], getCat: t => t[0],
+  front: t => termFirst === "term" ? termSide(t) : defSide(t),
+  back: t => termFirst === "term" ? defSide(t) : termSide(t)
+});
+function termSide(t) { return `<div class="tag"><span>${esc(t[0])}</span><span>Term</span></div><div class="big">${esc(t[1])}</div>`; }
+function defSide(t) { return `<div class="tag"><span>${esc(t[0])}</span><span>Definition</span></div><div class="def">${esc(t[2])}</div>`; }
+function setFirst(v) {
+  termFirst = v; store.set("u2.termFirst", v);
+  $("#first-term").setAttribute("aria-pressed", v === "term");
+  $("#first-def").setAttribute("aria-pressed", v === "def");
+  termsDeck.render();
+}
+$("#first-term").addEventListener("click", () => setFirst("term"));
+$("#first-def").addEventListener("click", () => setFirst("def"));
+setFirst(termFirst);
+
+/* ---------- PAGE 2 ---------- */
+const contextDeck = makeDeck({
+  name: "context", mount: $("#context-deck"), chipsMount: $("#context-chips"), items: CONTEXT,
+  categories: [LIT, MOV, RHE], getCat: c => c[0],
+  front: c => `<div class="tag"><span>${esc(c[1])}</span><span>Name the term</span></div>
+    <div class="passage">${esc(c[2])}</div><div class="prompt">${esc(c[3])}</div>`,
+  back: c => `<div class="tag"><span>${esc(c[1])}</span><span>Answer</span></div>
+    <div class="answer">${esc(c[4])}</div><div class="why">${esc(c[5])}</div>`
+});
+
+/* ---------- PAGE 4 ---------- */
+const quotesDeck = makeDeck({
+  name: "quotes", mount: $("#quotes-deck"), chipsMount: $("#quotes-chips"), items: QUOTES,
+  categories: [M1, M2, M3], getCat: q => q[0],
+  front: q => `<div class="tag"><span>${esc(q[0])}</span><span>Find the error</span></div>
+    <div class="sentence">${esc(q[1])}</div><div class="prompt">Is there a lead-in or punctuation error? Find it, then flip.</div>`,
+  back: q => `<div class="tag"><span>${esc(q[0])}</span><span>Check</span></div>
+    <span class="verdict ${q[2] ? "ok" : "err"}">${q[2] ? "No error" : "Error found"}</span>
+    <div class="why">${esc(q[3])}</div>
+    <div class="label">${q[2] ? "As written" : "Corrected"}</div><div class="fix">${q[4]}</div>`
+});
+
+/* ---------- PAGE 3 ---------- */
+const claimState = { i: 0, answers: CLAIMS.map(() => null) };
+function renderClaim() {
+  const c = CLAIMS[claimState.i], picked = claimState.answers[claimState.i];
+  const letters = "ABCD";
+  const opts = c.opts.map((k, n) => {
+    let cls = "opt";
+    if (picked) { if (k === c.ans) cls += " right"; else if (k === picked) cls += " wrong"; }
+    return `<button type="button" class="${cls}" data-k="${k}" ${picked ? "disabled" : ""}><span class="k">${letters[n]}</span><span>${esc(OPT[k])}</span></button>`;
+  }).join("");
+  const fb = picked ? `<div class="feedback" aria-live="polite">
+      <span class="verdict ${picked === c.ans ? "ok" : "err"}">${picked === c.ans ? "Correct" : "Not quite"}</span>
+      <p>${esc(c.why)}</p>
+      <div class="label">Supercharged revision</div>
+      <p class="claim" style="font-size:17px">${esc(c.fix)}</p>
+    </div>` : "";
+  $("#claim-card").innerHTML = `<div class="claimcard">
+      <div class="label">Draft claim ${claimState.i + 1}</div>
+      <div class="claim">${esc(c.claim)}</div>
+      <div class="prompt" style="font-weight:700;color:var(--accent)">What is the main problem with this claim?</div>
+      <div class="options">${opts}</div>${fb}
+    </div>`;
+  const answered = claimState.answers.filter(Boolean).length;
+  const right = claimState.answers.filter((a, n) => a && a === CLAIMS[n].ans).length;
+  $("#claim-score").textContent = `${right} correct · ${answered} answered`;
+  $("#claim-count").textContent = `${claimState.i + 1} / ${CLAIMS.length}`;
+  $("#claim-bar").style.width = `${((claimState.i + 1) / CLAIMS.length) * 100}%`;
+  $("#claim-prev").disabled = claimState.i === 0;
+  $("#claim-next").disabled = claimState.i === CLAIMS.length - 1;
+}
+$("#claim-card").addEventListener("click", e => {
+  const b = e.target.closest("[data-k]"); if (!b || claimState.answers[claimState.i]) return;
+  claimState.answers[claimState.i] = b.dataset.k; renderClaim();
+});
+$("#claim-prev").addEventListener("click", () => { if (claimState.i > 0) { claimState.i--; renderClaim(); } });
+$("#claim-next").addEventListener("click", () => { if (claimState.i < CLAIMS.length - 1) { claimState.i++; renderClaim(); } });
+renderClaim();
+
+/* ---------- ROUTING ---------- */
+const PAGES = { terms: termsDeck, context: contextDeck, claims: null, quotes: quotesDeck };
+function show(page) {
+  if (!(page in PAGES)) page = "terms";
+  document.querySelectorAll("section.page").forEach(s => s.hidden = s.id !== "page-" + page);
+  document.querySelectorAll("nav.tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.page === page ? "page" : "false"));
+  activeDeck = PAGES[page];
+  store.set("u2.page", page);
+}
+window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+show(location.hash.slice(1) || store.get("u2.page", "terms"));
+
+document.addEventListener("keydown", e => {
+  if (e.target.closest("input, textarea, select")) return;
+  const page = location.hash.slice(1) || store.get("u2.page", "terms");
+  if (page === "claims") {
+    if (e.key === "ArrowRight") $("#claim-next").click();
+    if (e.key === "ArrowLeft") $("#claim-prev").click();
+    return;
+  }
+  if (!activeDeck) return;
+  if (e.key === " " && !e.target.closest("button")) { e.preventDefault(); activeDeck.flip(); }
+  if (e.key === "ArrowRight") activeDeck.go(1);
+  if (e.key === "ArrowLeft") activeDeck.go(-1);
+});
+</script>
+
+</body></html>
